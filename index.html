@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="https://i.ibb.co/qJNc63j/20240102-065118.png">
     <style>
         body {
@@ -16,6 +17,7 @@
             height: 100vh;
             background-color: #222; /* Tema merah */
             color: white;
+            position: relative;
         }
 
         .container {
@@ -60,6 +62,11 @@
           text-decoration: underline;
         }
 
+       #currentDate {
+         font-family: 'Nunito', ssans-serif;
+         text-decoration: overline;
+       }
+
         footer {
             color: #787878;
             text-align: center;
@@ -72,6 +79,7 @@
 </head>
 
 <body>
+    <div id="currentDate" style="position: absolute; top: 10px; left: 10px; font-size: 16px;"></div>
     <div class="container">
         <img src="https://i.ibb.co/qJNc63j/20240102-065118.png" alt="Logo">
         <p class="hitung"><marquee>Hitung Mundur 2025</marquee></p>
@@ -95,7 +103,7 @@
         </h1>
         <audio id="detikSound" src="https://drive.google.com/uc?id=1YeMSW1n--Ho2NhADJLux2scpyz1lBy72" preload="auto" loop></audio>
         <audio id="alarmSound" src="URL_KE_FILE_ALARM_ANDA" preload="auto"></audio>
-        <footer><a href="https://flasting.com.au/wp-content/">&copy; SKL Official</a></footer>
+        <footer><a href="https://sedulurkoncolawas.github.io/skl/">&copy; SKL Official</a></footer>
     </div>
 
     <script>
@@ -131,7 +139,17 @@
             } else {
                 detikSound.play();
             }
+
+            // Menampilkan hasil pada elemen dengan id "currentDate"
+            const currentDateElement = document.getElementById("currentDate");
+            currentDateElement.innerHTML = getCurrentDate();
         }, 1000);
+
+        function getCurrentDate() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            return now.toLocaleDateString('id', options);
+        }
     </script>
 </body>
 
